@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.github.mikephil.charting.charts.ScatterChart
+            android:id="@+id/scatterChart1"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:contentDescription="Scatter chart 1 showing data"/>
+
+        <com.github.mikephil.charting.charts.ScatterChart
+            android:id="@+id/scatterChart2"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:contentDescription="Scatter chart 2 showing data"/>
+
+        <com.github.mikephil.charting.charts.ScatterChart
+            android:id="@+id/scatterChart3"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:contentDescription="Scatter chart 3 showing data"/>
+
+        <com.github.mikephil.charting.charts.ScatterChart
+            android:id="@+id/scatterChart4"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:contentDescription="Scatter chart 4 showing data"/>
+
+        <com.github.mikephil.charting.charts.ScatterChart
+            android:id="@+id/scatterChart5"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:contentDescription="Scatter chart 5 showing data"/>
+
+        <com.github.mikephil.charting.charts.ScatterChart
+            android:id="@+id/scatterChart6"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:contentDescription="Scatter chart 6 showing data"/>
+
+        <com.github.mikephil.charting.charts.ScatterChart
+            android:id="@+id/scatterChart7"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:contentDescription="Scatter chart 7 showing data"/>
+
+        <com.github.mikephil.charting.charts.ScatterChart
+            android:id="@+id/scatterChart8"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:contentDescription="Scatter chart 8 showing data"/>
+
+    </LinearLayout>
+</ScrollView>
