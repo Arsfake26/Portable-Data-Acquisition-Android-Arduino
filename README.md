@@ -93,4 +93,4 @@ scatterChart.invalidate();
 A `Handler` listens for new data and updates the graph dynamically.
 
 ## Recognized Microcontroller Devices
-List of Microcontroller devices that can be used with the app available on `device_filter.xml`, add the Vendor ID and Product ID of the device to enable communication with the app. 
+List of Microcontroller devices that can be used with the app available on `device_filter.xml`, add the Vendor ID and Product ID of the device to enable communication with the app.
