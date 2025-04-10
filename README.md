@@ -1,5 +1,7 @@
 # Brief Documentation
 
+## APK soon
+
 ## Overview
 This Android application communicates with a Microcontroller via OTG USB connection. It receives data, stores it in an SQLite database, and visualizes the data using scatter plots.
 
@@ -10,6 +12,10 @@ This Android application communicates with a Microcontroller via OTG USB connect
 - **Data Management**: Saves and retrieves historical data with options to clear data.
 
 ## Setup & Installation
+
+### 0. Sample Arduino Code
+Arduino code used for testing purpose can be found [here](https://github.com/Arsfake26/Arduino-test-code-for-portable-data-acquisition)
+
 ### 1. Dependencies
 Added dependencies to `build.gradle`:
 ```gradle
@@ -86,4 +92,5 @@ scatterChart.invalidate();
 ## Real-Time Updates
 A `Handler` listens for new data and updates the graph dynamically.
 
-
+## Recognized Microcontroller Devices
+List of Microcontroller devices that can be used with the app available on `device_filter.xml`, add the Vendor ID and Product ID of the device to enable communication with the app. 
