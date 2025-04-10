@@ -1,6 +1,6 @@
 # Brief Documentation
 
-## APK soon
+## [APK Release](https://github.com/Arsfake26/Portable-Data-Acquisition-Android-Arduino/releases/tag/v1.0) (Click the link)
 
 ## Overview
 This Android application communicates with a Microcontroller via OTG USB connection. It receives data, stores it in an SQLite database, and visualizes the data using scatter plots.
