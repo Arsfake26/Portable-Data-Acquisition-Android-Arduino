@@ -24,6 +24,7 @@ import com.hoho.android.usbserial.driver.UsbSerialProber;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -71,9 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnConnect.setOnClickListener(v -> connectToUsb());
         btnExport.setOnClickListener(v -> {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                exportDataToCSV();
-            }
+            showFileNameDialog();
         });
 
         btnViewData.setOnClickListener(v -> {
@@ -225,11 +224,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private void requestStoragePermissions() {
+    private String pendingFileName = null;
+
+    private void requestStoragePermissions(String fileName) {
+        pendingFileName = fileName; // Store the file name temporarily
         if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         } else {
-            exportDataToCSV();
+            exportDataToCSV(fileName);
         }
     }
 
@@ -238,24 +240,54 @@ public class MainActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 1) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                exportDataToCSV();
+                if (pendingFileName != null) {
+                    exportDataToCSV(pendingFileName);
+                    pendingFileName = null;
+                }
             } else {
                 Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    private void exportDataToCSV() {
-        String fileName = "data_export.csv";
+
+    private void showFileNameDialog() {
+        final EditText input = new EditText(this);
+        input.setHint("Enter file name (without extension)");
+
+        new android.app.AlertDialog.Builder(this)
+                .setTitle("Export CSV")
+                .setMessage("Enter the name of the file you want to export:")
+                .setView(input)
+                .setPositiveButton("Export", (dialog, whichButton) -> {
+                    String fileName = input.getText().toString().trim();
+                    if (!fileName.isEmpty()) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                            exportDataToCSV(fileName);
+                        }
+                    } else {
+                        Toast.makeText(MainActivity.this, "File name cannot be empty", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Cancel", (dialog, whichButton) -> dialog.cancel())
+                .show();
+    }
+
+
+    private void exportDataToCSV(String fileName) {
+        if (!fileName.endsWith(".csv")) {
+            fileName += ".csv";
+        }
 
         ContentValues values = new ContentValues();
         values.put(MediaStore.MediaColumns.DISPLAY_NAME, fileName);
         values.put(MediaStore.MediaColumns.MIME_TYPE, "text/csv");
         values.put(MediaStore.MediaColumns.RELATIVE_PATH, "Documents/MyAppExports/");
 
-        try (OutputStream outputStream = getContentResolver().openOutputStream(getContentResolver().insert(MediaStore.Files.getContentUri("external"), values))) {
+        try (OutputStream outputStream = getContentResolver().openOutputStream(
+                Objects.requireNonNull(getContentResolver().insert(MediaStore.Files.getContentUri("external"), values)))) {
             if (outputStream != null) {
-                outputStream.write("ID,MessageCounter,data1,data2,data3,data4,data5,data6,data7,data8\n".getBytes());
+                outputStream.write("ID,Timestamp,MessageCounter,ReceivedData,tes1,tes2,tes3,tes4,tes5,tes6\n".getBytes());
                 Cursor cursor = databaseHelper.getAllData();
                 if (cursor != null && cursor.moveToFirst()) {
                     do {
@@ -269,7 +301,8 @@ public class MainActivity extends AppCompatActivity {
                         String data6 = cursor.getString(7);
                         String data7 = cursor.getString(8);
                         String data8 = cursor.getString(9);
-                        String line = id + "," + msgCounter + "," + data1 + "," + data2 + "," + data3 + "," + data4 + "," + data5 + "," + data6 + "," + data7 + "," + data8 + "\n";
+                        String line = id + "," + msgCounter + "," + data1 + "," + data2 + "," + data3 + "," + data4 + "," +
+                                data5 + "," + data6 + "," + data7 + "," + data8 + "\n";
                         outputStream.write(line.getBytes());
                     } while (cursor.moveToNext());
                     cursor.close();
@@ -281,5 +314,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Failed to export data", Toast.LENGTH_SHORT).show();
         }
     }
+
 }
 

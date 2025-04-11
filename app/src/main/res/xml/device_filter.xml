@@ -37,5 +37,5 @@
     <usb-device vendor-id="6790" product-id="21972" /><!-- 0x1A86 / 0x55D4: Qinheng CH9102F -->
 
     <!-- STM32 -->
-    <usb-device vendor-id="0483" product-id="5740" /> <!-- STM32F Black Pill -->
+    <usb-device vendor-id="0483" product-id="5740" /> <!-- STM32F Series -->
 </resources>
