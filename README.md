@@ -1,7 +1,6 @@
 # Brief Documentation
 
 ## APK Release ([Click here](https://github.com/Arsfake26/Portable-Data-Acquisition-Android-Arduino/releases))
-https://github.com/Arsfake26/Portable-Data-Acquisition-Android-Arduino/releases
 Note : Use the sample arduino code provided on below link to properly use the app.
 
 ## Overview
