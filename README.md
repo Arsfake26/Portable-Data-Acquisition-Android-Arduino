@@ -13,7 +13,7 @@ This Android application communicates with a Microcontroller via OTG USB connect
 - **Data Management**: Saves and retrieves historical data with options to clear data.
 
 ## Example of the app running
-<img src="main_interface.jpg" alt="Description" width="300" height="200">
+<img src="main_interface.jpg" alt="Description" width="300" height="600">
 ![Graph View](Graph.jpg)
 
 ## Setup & Installation
