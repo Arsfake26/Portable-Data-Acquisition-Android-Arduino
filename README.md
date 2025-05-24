@@ -14,7 +14,7 @@ This Android application communicates with a Microcontroller via OTG USB connect
 
 ## Example of the app running
 <img src="main_interface.jpg" alt="Description" width="300" height="600">
-![Graph View](Graph.jpg)
+<img src="Graph.jpg" alt="Description" width="300" height="600">
 
 ## Setup & Installation
 
