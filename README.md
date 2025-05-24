@@ -12,6 +12,10 @@ This Android application communicates with a Microcontroller via OTG USB connect
 - **Real-time Graph Updates**: Displays and dynamically updates scatter plots.
 - **Data Management**: Saves and retrieves historical data with options to clear data.
 
+## Example of the app running
+![Main Page](main_interface.jpg)
+![Graph View](Graph.jpg)
+
 ## Setup & Installation
 
 ### 0. Sample Arduino Code
